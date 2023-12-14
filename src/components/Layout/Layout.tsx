@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 
 import { Header } from "../Header";
 import { Footer } from "../Footer";
@@ -25,7 +25,7 @@ export const Layout: FC<ILayoutProps> = ({ children }) => {
         <Header />
       </Box>
       <Box component="main" sx={{ flexGrow: 1, p: 5, pt: 5 }}>
-        {children}
+        <Container maxWidth="xl">{children}</Container>
       </Box>
 
       <Box component="footer">
