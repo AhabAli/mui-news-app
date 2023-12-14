@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-import "./App.css";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { getAppTheme } from "./theme/theme";
 import { DARK_MODE_THEME, LIGHT_MODE_THEME } from "./utils/constants";
