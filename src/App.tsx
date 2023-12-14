@@ -6,6 +6,7 @@ import { DARK_MODE_THEME, LIGHT_MODE_THEME } from "./utils/constants";
 import { ThemeModeContext } from "./contexts";
 
 import Home from "./pages/Home";
+import { Layout } from "./components/Layout";
 
 function App() {
   const [mode, setMode] = useState<
@@ -28,7 +29,9 @@ function App() {
     <ThemeModeContext.Provider value={themeMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Home />
+        <Layout>
+          <Home />
+        </Layout>
       </ThemeProvider>
     </ThemeModeContext.Provider>
   );

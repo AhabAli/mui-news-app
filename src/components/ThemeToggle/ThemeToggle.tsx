@@ -19,7 +19,7 @@ export function ThemeToggle(props: IThemeToggleProps) {
     >
       <IconButton aria-label="Switch Theme" onClick={toggleThemeMode}>
         {theme.palette.mode === LIGHT_MODE_THEME ? (
-          <LightModeIcon />
+          <LightModeIcon sx={{ color: "#FFF" }} />
         ) : (
           <DarkModeIcon />
         )}
