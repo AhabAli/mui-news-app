@@ -1,25 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useMemo, useState } from "react";
+import "./App.css";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { getAppTheme } from "./theme/theme";
+import { DARK_MODE_THEME, LIGHT_MODE_THEME } from "./utils/constants";
+import { ThemeModeContext } from "./contexts";
+
+import Home from "./pages/Home";
 
 function App() {
+  const [mode, setMode] = useState<
+    typeof LIGHT_MODE_THEME | typeof DARK_MODE_THEME
+  >(LIGHT_MODE_THEME);
+
+  const themeMode = useMemo(
+    () => ({
+      toggleThemeMode: () => {
+        setMode((prevMode) =>
+          prevMode === LIGHT_MODE_THEME ? DARK_MODE_THEME : LIGHT_MODE_THEME
+        );
+      },
+    }),
+    []
+  );
+
+  const theme = useMemo(() => getAppTheme(mode), [mode]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeModeContext.Provider value={themeMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Home />
+      </ThemeProvider>
+    </ThemeModeContext.Provider>
   );
 }
 
