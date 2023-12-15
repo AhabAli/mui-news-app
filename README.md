@@ -17,8 +17,8 @@ Welcome to our News App repository! This project aims to deliver a user-friendly
 
 2. \*\*Install Dependencies
 
-   bash
-   cd news-app
+   cd mui-news-app
+   
    npm install
 
 3. \*\*Run the App
