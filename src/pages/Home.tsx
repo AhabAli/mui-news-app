@@ -1,23 +1,11 @@
-import {
-  Avatar,
-  Box,
-  CircularProgress,
-  Grid,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Typography,
-} from "@mui/material";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+
 import * as React from "react";
 import { Topics } from "../components/Topics";
 import { fetchNews } from "../services/news-api";
 import { Article } from "../types/news";
-import { formatDate, stringAvatar } from "../utils/helper";
 import { useSearchParams } from "react-router-dom";
+import { CardGrid } from "../components/CardGrid";
 
 export interface IHomeProps {}
 
@@ -32,6 +20,7 @@ export default function Home(props: IHomeProps) {
 
   React.useEffect(() => {
     setLoading(true);
+    setArticles("");
     const getData = async () => {
       try {
         const data = await fetchNews({ page: 1, query: topic });
@@ -59,73 +48,18 @@ export default function Home(props: IHomeProps) {
       <Topics active={topic} updateTopic={updateTopic} />
 
       <Box sx={{ mt: 4 }}>
-        {articles && (
-          <Typography
-            variant={"h6"}
-            component={"h6"}
-            gutterBottom
-            sx={{ ml: 1 }}
-          >
-            Latest Articles: {topic}
-          </Typography>
-        )}
-
         <Grid container spacing={2}>
-          {articles &&
-            articles.map((article: Article) => {
-              return (
-                <Grid item xs={3}>
-                  <Card
-                    sx={{
-                      transition: "0.3s",
-                      maxWidth: "100%",
-                      margin: "auto",
-                      boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
-                    }}
-                  >
-                    <CardMedia
-                      component="img"
-                      image={
-                        article.urlToImage || "https://placehold.co/600x400"
-                      }
-                    />
-                    <CardContent>
-                      <Typography variant={"h6"} component={"h6"} gutterBottom>
-                        {article.title}
-                      </Typography>
-                      <Typography variant={"caption"}>
-                        {article.description}
-                      </Typography>
-
-                      <List
-                        sx={{
-                          bgcolor: "background.paper",
-                        }}
-                      >
-                        <ListItem
-                          sx={{
-                            paddingLeft: 0,
-                          }}
-                        >
-                          <ListItemAvatar>
-                            <Avatar
-                              {...stringAvatar(article.author || "Unknown")}
-                            />
-                          </ListItemAvatar>
-                          <ListItemText
-                            primary={article.author}
-                            secondary={formatDate(article.publishedAt)}
-                          />
-                        </ListItem>
-                      </List>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              );
-            })}
+          {articles && (
+            <Grid item xs={12}>
+              <Typography variant={"h6"} component={"h6"} gutterBottom>
+                Latest Articles: {topic}
+              </Typography>
+            </Grid>
+          )}
+          {articles && <CardGrid articlesData={articles} />}
           {loading && (
             <Grid item xs={12}>
-              <CircularProgress />{" "}
+              <CircularProgress />
               <Typography variant={"body2"}>Fetching Articles...</Typography>
             </Grid>
           )}
