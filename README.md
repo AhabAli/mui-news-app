@@ -30,7 +30,7 @@ Welcome to our News App repository! This project aims to deliver a user-friendly
 
 React: https://reactjs.org/
 Material-UI: https://mui.com/
-News API: [Insert News API Link]
+News API: https://newsapi.org/
 
 ## License
 
