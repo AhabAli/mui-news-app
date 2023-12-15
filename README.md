@@ -13,7 +13,7 @@ Welcome to our News App repository! This project aims to deliver a user-friendly
 1. **Clone the Repository**
 
    bash
-   git clone https://github.com/yourusername/news-app.git
+   git clone https://github.com/AhabAli/mui-news-app.git
 
 2. \*\*Install Dependencies
 
