@@ -35,21 +35,33 @@ export function ArticleCard({
         image={urlToImage || "https://placehold.co/600x400"}
       />
       <CardContent>
-        <Typography
-          variant={"h6"}
-          component={"a"}
-          gutterBottom
-          href={`${url}`}
-          target="_blank"
-          sx={{
-            display: "block",
-            textDecoration: "none",
-            color: "text.primary",
-          }}
-        >
-          {title}
+        <Typography variant="h6" component={"p"} sx={{ mb: 2 }}>
+          <Typography
+            variant={"h6"}
+            component={"a"}
+            gutterBottom
+            href={`${url}`}
+            target="_blank"
+            sx={{
+              textDecoration: "none",
+              color: "text.primary",
+              background:
+                "linear-gradient(to right, rgba(100, 200, 200, 1), rgba(100, 200, 200, 1)),linear-gradient(to right, rgba(255, 0, 0, 1), rgba(255, 0, 180, 1), rgba(0, 100, 200, 1))",
+              backgroundSize: "100% 0.1em, 0 0.1em",
+              backgroundPosition: "100% 100%, 0 100%",
+              backgroundRepeat: "no-repeat",
+              transition: "background-size 400ms",
+              "&:hover": {
+                backgroundSize: " 0 0.1em, 100% 0.1em",
+              },
+            }}
+          >
+            {title}
+          </Typography>
         </Typography>
-        <Typography variant={"caption"}>{description}</Typography>
+        <Typography variant={"caption"} component={"p"} sx={{ mb: 2 }}>
+          {description}
+        </Typography>
 
         <List
           sx={{
