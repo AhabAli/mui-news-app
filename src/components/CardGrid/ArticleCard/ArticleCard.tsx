@@ -33,6 +33,7 @@ export function ArticleCard({
       <CardMedia
         component="img"
         image={urlToImage || "https://placehold.co/600x400"}
+        sx={{ height: 250 }}
       />
       <CardContent>
         <Typography variant="h6" component={"p"} sx={{ mb: 2 }}>
